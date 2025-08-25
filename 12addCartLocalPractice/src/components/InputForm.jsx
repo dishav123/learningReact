@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useInventory } from "../contexts/InventoryContext";
 
-function InputForm({ addProduct }) {
+function InputForm() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
 
+  const {addProduct}=useInventory();
+
   const handleAdd = () => {
     if ((!title || !price || !description)) return;
-    addProduct({ title, price, description });
+    addProduct({title, price, description });
     setTitle("");
     setPrice("");
     setDescription("");

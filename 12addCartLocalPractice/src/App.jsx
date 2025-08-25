@@ -2,13 +2,19 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import InputForm from "./components/InputForm";
 import ProductCard from "./components/ProductCard";
+import { InventoryProvider } from "./contexts/InventoryContext";
 
 function App() {
   const [products, setProducts] = useState([]);
 
   const addProduct = (newProduct) => {
-    setProducts([...products, newProduct]);
+    setProducts([...products, {id:Date.now(),...newProduct}]);
   };
+
+  const updateProduct=(id,product)=>{
+    setProducts((prev)=>prev.map((prevProduct)=>prevProduct.id===id?product:prevProduct))
+
+  }
 
   useEffect(() => {
     const productsLocal = JSON.parse(localStorage.getItem("product"));
@@ -22,14 +28,16 @@ function App() {
   }, [products]);
 
   return (
-    <div className="gap-y-2 flex">
-      <InputForm addProduct={addProduct} />
-      {products.map((product) => (
-        <div>
-          <ProductCard product={product} />
-        </div>
-      ))}
-    </div>
+    <InventoryProvider value={{addProduct,updateProduct,products}}>
+      <div className="gap-y-2 flex">
+        <InputForm />
+        {products.map((product) => (
+          <div key={product.id}>
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </div>
+    </InventoryProvider>
   );
 }
 

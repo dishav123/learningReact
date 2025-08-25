@@ -1,19 +1,17 @@
 import { useContext,createContext } from "react";
 
 export const InventoryContext=createContext({
-    Inventory:[
+    products:[
         {
             id:'',
             title:'',
             price:'',
-            quantity:'',
-            image:''
+            description:'',
         }
     ],
-    addProduct:(title,price,quantity,image)=>{},
-    updatePrice:(id)=>{},
-    updateQuantity:(id)=>{},
-    deleteProduct:(id)=>{}
+    addProduct:({newProduct})=>{},
+    updateProduct:(id,{product})=>{}
+
 })
 
 export const useInventory=()=>{
