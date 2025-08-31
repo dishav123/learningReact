@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useInventory } from "../contexts/InventoryContext";
 
 function ProductCard({ product }) {
-  const { updateProduct } = useInventory();
+  const { updateProduct, deleteProduct } = useInventory();
   const [isProductEditable, setIsProductEditable] = useState(false);
   const [description, setDescription] = useState(product.description);
   const [price, SetPrice] = useState(product.price);
@@ -10,8 +10,17 @@ function ProductCard({ product }) {
 
   const handleSave = () => {
     setIsProductEditable(!isProductEditable);
-    updateProduct(product.id, { ...product, title, price, description: description });
-    console.log(product.id)
+    updateProduct(product.id, {
+      ...product,
+      title,
+      price,
+      description: description,
+    });
+    console.log(product.id);
+  };
+
+  const handleDelete = () => {
+    deleteProduct(product.id);
   };
 
   return (
@@ -30,6 +39,7 @@ function ProductCard({ product }) {
               setTitle(e.target.value);
             }}
             className="outline-none"
+            style={{ fontFamily: "Poppins, sans-serif" }}
           />
           <input
             type="text"
@@ -38,6 +48,7 @@ function ProductCard({ product }) {
             onChange={(e) => {
               SetPrice(e.target.value);
             }}
+            style={{ fontFamily: "Poppins, sans-serif" }}
           />
           <input
             type="text"
@@ -45,6 +56,7 @@ function ProductCard({ product }) {
             readOnly={!isProductEditable}
             className="outline-none"
             onChange={(e) => setDescription(e.target.value)}
+            style={{ fontFamily: "Poppins, sans-serif" }}
           />
 
           {isProductEditable ? (
@@ -62,6 +74,13 @@ function ProductCard({ product }) {
               Edit
             </button>
           )}
+          <button
+            className="p-1 bg-red-400 rounded-2xl"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
