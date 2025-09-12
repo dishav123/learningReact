@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useWatchlistMovies } from "../contexts/WatchlistContext";
 
-// MovieCard.jsx
 function MovieCard({ id, name, director, image, rating }) {
+  const { addWatchlistMovies, removeWatchlistMovies } =
+    useWatchlistMovies();
+
   const [addedToWatchlist, setAddedToWatchlist] = useState(false);
-  const { addWatchlistMovies, removeWatchlistMovies } = useWatchlistMovies();
 
   const handleAdd = () => {
-    console.log("handle add working!")
     addWatchlistMovies({ id, name, director, image, rating });
-    setAddedToWatchlist(!addedToWatchlist);
+    setAddedToWatchlist(true);
   };
 
   const handleRemove = () => {
     removeWatchlistMovies(id);
-    setAddedToWatchlist(!addedToWatchlist);
+    setAddedToWatchlist(false);
   };
 
   return (
-    <div className="max-w-sm rounded-2xl shadow-lg p-4 bg-white">
+       <div className="max-w-sm rounded-2xl shadow-lg p-4 bg-white">
       <img
         src={image}
         alt={name}
@@ -30,10 +30,10 @@ function MovieCard({ id, name, director, image, rating }) {
         <p className="text-yellow-500 font-semibold">⭐ {rating}/10</p>
         {addedToWatchlist ? (
           <button
-            className="w-full bg-green-400 text-white rounded-[8px] my-2 py-2 hover:bg-green-300"
+            className="w-full bg-red-400 text-white rounded-[8px] my-2 py-2 hover:bg-red-300"
             onClick={handleRemove}
           >
-            Added to Watchlist
+            Remove from Watchlist
           </button>
         ) : (
           <button
@@ -45,6 +45,7 @@ function MovieCard({ id, name, director, image, rating }) {
         )}
       </div>
     </div>
+
   );
 }
 

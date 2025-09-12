@@ -1,20 +1,13 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext } from "react";
 
-
-export const WatchlistContext=createContext({
-    watchlistMovies:[{
-        id:"",
-        name:"",
-        director:"",
-        rating:'',
-        image:""
-    }],
-    addWatchlistMovies:(movie)=>{},
-    removeWatchlistMovies:(id)=>{}
+export const WatchlistContext = createContext({
+  watchlistMovies: [],
+  addWatchlistMovies: () => {},
+  removeWatchlistMovies: () => {},
 });
 
-export const useWatchlistMovies=()=>{
-    return useContext(WatchlistContext)
-}
+export const useWatchlistMovies = () => {
+  return useContext(WatchlistContext);
+};
 
-export const WatchlistProvider=WatchlistContext.Provider;
+export const WatchlistProvider = WatchlistContext.Provider;

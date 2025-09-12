@@ -1,9 +1,21 @@
-import { NavLink } from "react-router-dom";
+import MovieCard from "../components/MovieCard";
+import { useWatchlistMovies } from "../contexts/WatchlistContext";
 
 function WatchlistPage() {
+  const { watchlistMovies } = useWatchlistMovies();
   return (
     <div>
-      <h1 className="text-3xl text-center">This is watch list page</h1>
+      {watchlistMovies.map((watchlistMovie) => {
+        <div key={watchlistMovie.id}>
+          <MovieCard
+            id={watchlistMovie.id}
+            name={watchlistMovie.name}
+            director={watchlistMovie.director}
+            image={watchlistMovie.image}
+            rating={watchlistMovie.rating}
+          />
+        </div>;
+      })}
     </div>
   );
 }
