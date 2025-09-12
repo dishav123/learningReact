@@ -5,8 +5,9 @@ function WatchlistPage() {
   const { watchlistMovies } = useWatchlistMovies();
   return (
     <div>
-      {watchlistMovies.map((watchlistMovie) => {
-        <div key={watchlistMovie.id}>
+      {watchlistMovies.map((watchlistMovie) => (
+
+        <div key={watchlistMovie.id} className="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3">
           <MovieCard
             id={watchlistMovie.id}
             name={watchlistMovie.name}
@@ -14,8 +15,9 @@ function WatchlistPage() {
             image={watchlistMovie.image}
             rating={watchlistMovie.rating}
           />
-        </div>;
-      })}
+        </div>
+      ))}
+      
     </div>
   );
 }

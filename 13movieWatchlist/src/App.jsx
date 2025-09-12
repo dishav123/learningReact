@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
-import Layout from "../Layout";
 import "./App.css";
 import { WatchlistProvider } from "./contexts/WatchlistContext";
+import Navbar from "./components/Navbar";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
 
   const addWatchlistMovies = (movie) => {
     console.log("movie added", movie);
-    setWatchlistMovies((prev) => [...prev, movie]);
+    setWatchlistMovies((prev) => {
+      if (prev.find((m) => m.id === movie.id)) return prev; // prevent duplicates
+      return [...prev, movie];
+    });
   };
+
+  useEffect(() => {
+    console.log("Updated watchlist:", watchlistMovies);
+  }, [watchlistMovies]);
 
   const removeWatchlistMovies = (id) => {
     setWatchlistMovies((prev) => prev.filter((prevdata) => prevdata.id !== id));
@@ -32,7 +40,10 @@ function App() {
     <WatchlistProvider
       value={{ watchlistMovies, addWatchlistMovies, removeWatchlistMovies }}
     >
-      <Layout />
+      <div>
+        <Navbar />
+        <Outlet />
+      </div>
     </WatchlistProvider>
   );
 }

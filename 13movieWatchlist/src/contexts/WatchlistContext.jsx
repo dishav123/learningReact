@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 
 export const WatchlistContext = createContext({
-  watchlistMovies: [],
+  watchlistMovies: [{ id: "", name: "", director: "", image: "", rating: "" }],
   addWatchlistMovies: () => {},
   removeWatchlistMovies: () => {},
 });

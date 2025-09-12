@@ -10,11 +10,11 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import WatchlistPage from "./pages/WatchlistPage.jsx";
-import Layout from "../Layout.jsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
       <Route path="watchlist" element={<WatchlistPage/>} />
     </Route>
