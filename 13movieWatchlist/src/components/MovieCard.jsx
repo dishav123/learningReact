@@ -4,12 +4,11 @@ import { useWatchlistMovies } from "../contexts/WatchlistContext";
 
 // MovieCard.jsx
 function MovieCard({ id, name, director, image, rating }) {
-  const [addedToWatchlist, setAddedToWatchlist] = useState(false);
-
-  const { addWatchlistMovies, removeWatchlistMovies } = useWatchlistMovies( );
+  const { addWatchlistMovies, removeWatchlistMovies, checkAddedToWatchlist } = useWatchlistMovies( );
+  const [addedToWatchlist, setAddedToWatchlist] = useState(checkAddedToWatchlist(id));
 
   const handleAdd = () => {
-    setAddedToWatchlist(!addedToWatchlist);
+    setAddedToWatchlist(true)
     addWatchlistMovies({ id, name, director, image, rating });
   };
 
@@ -31,10 +30,10 @@ function MovieCard({ id, name, director, image, rating }) {
         <p className="text-yellow-500 font-semibold">⭐ {rating}/10</p>
         {addedToWatchlist ? (
           <button
-            className="w-full bg-green-400 text-white rounded-[8px] my-2 py-2 hover:bg-green-300"
+            className="w-full bg-red-400 text-white rounded-[8px] my-2 py-2 hover:bg-red-300"
             onClick={handleRemove}
           >
-            Added to Watchlist
+            Remove from Watchlist
           </button>
         ) : (
           <button

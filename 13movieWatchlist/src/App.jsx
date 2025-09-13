@@ -15,6 +15,14 @@ function App() {
     });
   };
 
+  const checkAddedToWatchlist=(id)=>{
+    if(watchlistMovies.some((watchlistMovie)=>watchlistMovie.id===id)){
+      return true
+    }
+    return false
+
+  }
+
   useEffect(() => {
     console.log("Updated watchlist:", watchlistMovies);
   }, [watchlistMovies]);
@@ -38,7 +46,7 @@ function App() {
 
   return (
     <WatchlistProvider
-      value={{ watchlistMovies, addWatchlistMovies, removeWatchlistMovies }}
+      value={{ watchlistMovies, addWatchlistMovies, removeWatchlistMovies,checkAddedToWatchlist}}
     >
       <div>
         <Navbar />
