@@ -4,11 +4,10 @@ import { useWatchlistMovies } from "../contexts/WatchlistContext";
 function WatchlistPage() {
   const { watchlistMovies } = useWatchlistMovies();
   return (
-    <div>
+    <div className="grid gap-5 p-5 sm:grid-cols-2 lg:grid-cols-3">
       {watchlistMovies.map((watchlistMovie) => (
         <div
           key={watchlistMovie.id}
-          className="grid gap-6 p-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           <MovieCard
             id={watchlistMovie.id}

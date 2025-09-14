@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useWatchlistMovies } from "../contexts/WatchlistContext";
 
-
-// MovieCard.jsx
 function MovieCard({ id, name, director, image, rating }) {
-  const { addWatchlistMovies, removeWatchlistMovies, checkAddedToWatchlist } = useWatchlistMovies( );
-  const [addedToWatchlist, setAddedToWatchlist] = useState(checkAddedToWatchlist(id));
+  const { addWatchlistMovies, removeWatchlistMovies, checkAddedToWatchlist } =
+    useWatchlistMovies();
+
+  const [addedToWatchlist, setAddedToWatchlist] = useState(
+    checkAddedToWatchlist(id)
+  );
 
   const handleAdd = () => {
-    setAddedToWatchlist(true)
     addWatchlistMovies({ id, name, director, image, rating });
+    setAddedToWatchlist(true);
   };
 
   const handleRemove = () => {
-    setAddedToWatchlist(!addedToWatchlist);
     removeWatchlistMovies(id);
+    setAddedToWatchlist(false);
   };
 
   return (

@@ -8,7 +8,6 @@ function App() {
   const [watchlistMovies, setWatchlistMovies] = useState([]);
 
   const addWatchlistMovies = (movie) => {
-    console.log("movie added", movie);
     setWatchlistMovies((prev) => {
       if (prev.find((m) => m.id === movie.id)) return prev; // prevent duplicates
       return [...prev, movie];
@@ -20,7 +19,6 @@ function App() {
       return true
     }
     return false
-
   }
 
   useEffect(() => {
