@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import WatchlistPage from "./pages/WatchlistPage.jsx";
+import MoviesDetails from "./pages/MoviesDetails.jsx";
 
 
 const router = createBrowserRouter(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
       <Route path="watchlist" element={<WatchlistPage/>} />
+      <Route path="/movies/:id" element={<MoviesDetails/>} />
     </Route>
   )
 );

@@ -15,6 +15,7 @@ function WatchlistPage() {
             director={watchlistMovie.director}
             image={watchlistMovie.image}
             rating={watchlistMovie.rating}
+            movie={watchlistMovie}
           />
         </div>
       ))}
