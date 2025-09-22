@@ -3,5 +3,5 @@ import todoReducer from '../features/Todo/TodoSlides';
 
 
 export const store=configureStore({
-    reducer:todoReducer
+    reducer:todoReducer,
 })

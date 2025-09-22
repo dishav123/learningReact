@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {useDispatch} from 'react-redux'
-import {addTodo,removeTodo} from '../features/Todo/TodoSlides'
+import {addTodo} from '../features/Todo/TodoSlides'
+import { toast } from "react-toastify";
+
 
 function AddTodo() {
     const [input,setInput]=useState('');
@@ -8,7 +10,11 @@ function AddTodo() {
 
     const addTodoHandler=(e)=>{
         e.preventDefault();
-        dispatch(addTodo(input))
+        if(input){
+          dispatch(addTodo(input))
+        }else{
+          toast.error("Todo can't be empty!")
+        }
         setInput('')
     }
 
